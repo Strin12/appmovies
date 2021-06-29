@@ -8,11 +8,8 @@ import { MoviesService } from '../services/movies.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-movies: Pelicula[] = [];
-slideOpts = {
-  slidesPerView: 1.1,
-  freeMode: true
-};
+peliculas: Pelicula[] = [];
+populares: Pelicula[] = [];
 
 
 
@@ -22,10 +19,23 @@ ngOnInit(){
 this.moviesService.getFeacture().subscribe(
 (resp: MDBResponse) =>{
   console.log(resp);
-  this.movies = resp.results;
+  this.peliculas = resp.results;
 }
 
 );
+this.getPopulares();
+}
+cargarMas() {
+  this.getPopulares();
+}
+
+getPopulares(){
+  this.moviesService.getPopulares().subscribe(
+    resp => {
+      const arrTemp = [...this.populares, ...resp.results];
+      this.populares = arrTemp;
+    }
+  );
 }
 
 }
