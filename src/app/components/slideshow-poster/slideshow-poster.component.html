@@ -2,7 +2,7 @@
   
   <ion-slide *ngFor="let peliculas of peliculas">
     <ion-card>
-      <img [src]="peliculas.poster_path | imagen">
+      <img class="poster" [src]="peliculas.poster_path | imagen">
     </ion-card>
   </ion-slide>
 </ion-slides>
