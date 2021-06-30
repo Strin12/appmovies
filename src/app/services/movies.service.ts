@@ -9,7 +9,7 @@ const apiKey = environment.apiKey;
   providedIn: 'root'
 })
 export class MoviesService {
-  private popularesPage = 0;
+  private popularesPage = 485;
   generos: Genre[] = [];
 
   constructor(private http : HttpClient) { }
@@ -37,13 +37,9 @@ private ejecutarQuery<T>( query: string ) {
 
 }
 getPopulares() {
-
   this.popularesPage++;
-
-  const query = `/discover/movie?sort_by=popularity.desc&page=${ this.popularesPage }`;
-
+  const query = `/discover/movie?sort_by=popularity.desc&page=${this.popularesPage}`;
   return this.ejecutarQuery<MDBResponse>(query);
-
 }
 getPeliculaDetalle( id: string ) {
   return this.ejecutarQuery<PeliculaDetalle>(`/movie/${ id }?a=1`);
@@ -66,6 +62,10 @@ cargarGeneros(): Promise<Genre[]> {
 
   });
 
+
+}
+buscarPeliculas( texto: string ) {
+  return this.ejecutarQuery(`/search/movie?query=${ texto }`);
 
 }
 

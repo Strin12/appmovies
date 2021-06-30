@@ -15,7 +15,12 @@ export class DetalleComponent implements OnInit {
   actores: Cast[] = [];
   oculto = 150;
   estrella = 'star-outline';
-
+  
+  slideOptActores = {
+    slidesPerView: 3.3,
+    freeMode: true,
+    spaceBetween: 0
+  };
 
 
   constructor(private moviesService: MoviesService,
