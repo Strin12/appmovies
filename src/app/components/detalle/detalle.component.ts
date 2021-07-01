@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Cast, PeliculaDetalle } from 'src/app/interfaces/interface';
+import { DataLocalService } from 'src/app/services/data-local.service';
 import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
@@ -10,7 +11,6 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class DetalleComponent implements OnInit {
   @Input() id;
-
   pelicula: PeliculaDetalle = {};
   actores: Cast[] = [];
   oculto = 150;
@@ -24,24 +24,37 @@ export class DetalleComponent implements OnInit {
 
 
   constructor(private moviesService: MoviesService,
-               private modalCtrl: ModalController,) { }
+               private modalCtrl: ModalController,
+               private dataLocal: DataLocalService) { }
 
-  ngOnInit() {
-    this.moviesService.getPeliculaDetalle( this.id )
-    .subscribe( resp => {
-      console.log( resp );
-      this.pelicula = resp;
-    });
-
-    this.moviesService.getActoresPelicula( this.id )
-    .subscribe( resp => {
-      console.log( resp );
-      this.actores = resp.cast;
-    });
-
-  }
-  regresar() {
-    this.modalCtrl.dismiss();
-  }
-
-}
+               ngOnInit() {
+                // console.log('ID', this.id );
+            
+                this.dataLocal.existePelicula( this.id )
+                  .then( existe => this.estrella = ( existe ) ? 'star' : 'star-outline' );
+            
+            
+                this.moviesService.getPeliculaDetalle( this.id )
+                    .subscribe( resp => {
+                      console.log( resp );
+                      this.pelicula = resp;
+                    });
+            
+                this.moviesService.getActoresPelicula( this.id )
+                    .subscribe( resp => {
+                      console.log( resp );
+                      this.actores = resp.cast;
+                    });
+            
+              }
+            
+              regresar() {
+                this.modalCtrl.dismiss();
+              }
+            
+              favorito() {
+                const existe = this.dataLocal.guardarPelicula( this.pelicula );
+                this.estrella = ( existe ) ? 'star' : 'star-outline';
+              }
+            
+            }
