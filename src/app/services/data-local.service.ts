@@ -67,12 +67,6 @@ export class DataLocalService {
 
     return (existe) ? true : false;
   }
-  async existeHomePage( id ) {
 
-    await this.cargarFavoritos();
-    const existe = this.peliculas.find( peli => peli.id === id );
-
-    return (existe) ? true : false;
-  }
 
 }

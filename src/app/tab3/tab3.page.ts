@@ -14,7 +14,6 @@ export class Tab3Page implements OnInit{
   generos: Genre[] = [];
   favoritos: any;
   favoritoGenero: any[] = [];
- // datos: [] = [];
   QR: any;
   codig:any;
   
@@ -25,6 +24,7 @@ export class Tab3Page implements OnInit{
                 this.favoritos = this.dataLocal.cargarFavoritos();
                // console.log(this.favoritos);
                 this.Homepage();
+                this.ionViewWillEnter();
                }
   async ionViewWillEnter() {
 
@@ -64,7 +64,7 @@ export class Tab3Page implements OnInit{
       //this.QR = this.datos.map;
       this.QR = datos;
 //      console.log(datos);
-console.log(this.QR);
+//console.log(this.QR);
 this.codig = `https://api.qrserver.com/v1/create-qr-code/?data=${this.QR}d&size=100x100`;
 }
     }

@@ -19,7 +19,6 @@ dato: boolean = true;
 ngOnInit(){
 this.moviesService.getFeacture().subscribe(
 (resp: MDBResponse) =>{
-  console.log(resp);
   this.peliculas = resp.results;
 }
 

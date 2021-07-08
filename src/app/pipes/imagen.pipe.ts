@@ -11,7 +11,7 @@ export class ImagenPipe implements PipeTransform {
       return './assets/no-image.jpg';
     }
   const imgUrl = `${ImagenPath}/${size}${img}`;
-  console.log(imgUrl);
+ // console.log(imgUrl);
 return imgUrl;
 }
 
