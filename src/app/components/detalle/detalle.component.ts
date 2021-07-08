@@ -54,6 +54,7 @@ export class DetalleComponent implements OnInit {
             
               favorito() {
                 const existe = this.dataLocal.guardarPelicula( this.pelicula );
+                
                 this.estrella = ( existe ) ? 'star' : 'star-outline';
               }
             

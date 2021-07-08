@@ -14,13 +14,17 @@ export class Tab3Page implements OnInit{
   generos: Genre[] = [];
   favoritos: any;
   favoritoGenero: any[] = [];
-
+ // datos: [] = [];
+  QR: any;
+  codig:any;
+  
   constructor( private dataLocal: DataLocalService,
                private moviesService: MoviesService  ) { }
 
                ngOnInit(){
                 this.favoritos = this.dataLocal.cargarFavoritos();
-                console.log(this.favoritos);
+               // console.log(this.favoritos);
+                this.Homepage();
                }
   async ionViewWillEnter() {
 
@@ -48,9 +52,20 @@ export class Tab3Page implements OnInit{
 
     });
 
-    console.log(this.favoritoGenero);
+   // console.log(this.favoritoGenero);
 
 
   }
-
+  Homepage(){
+    var datos = JSON.parse(localStorage.getItem('Favoritos'));
+    for(let i in datos)
+    {
+      datos.push(datos[i].homepage);
+      //this.QR = this.datos.map;
+      this.QR = datos;
+//      console.log(datos);
+console.log(this.QR);
+this.codig = `https://api.qrserver.com/v1/create-qr-code/?data=${this.QR}d&size=100x100`;
+}
+    }
 }

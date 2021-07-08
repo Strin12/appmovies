@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Genre, MDBResponse, PeliculaDetalle, RespuestaCredits } from '../interfaces/interface';
+import { DataLocalService } from './data-local.service';
 const URL    = environment.url;
 const apiKey = environment.apiKey;
-
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesService {
   private popularesPage = 485;
   generos: Genre[] = [];
-
-  constructor(private http : HttpClient) { }
+  peliculas: any[] = [];
+ QR: string = 'http://api.qrserver.com/v1/create-qr-code/'
+  constructor(private http : HttpClient, private DataLocal: DataLocalService) { }
 
 getFeacture(){
   const hoy = new Date();
@@ -43,6 +44,10 @@ getPopulares() {
 }
 getPeliculaDetalle( id: string ) {
   return this.ejecutarQuery<PeliculaDetalle>(`/movie/${ id }?a=1`);
+}
+///debo terminarlo
+GetQRPelicula(peliculas:any){
+return this.http.get(`${this.QR}?data=${peliculas}&size=100x100`);
 }
 
 getActoresPelicula( id: string ) {

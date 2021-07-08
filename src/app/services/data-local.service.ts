@@ -8,12 +8,10 @@ import { PeliculaDetalle } from '../interfaces/interface';
 })
 export class DataLocalService {
   peliculas: PeliculaDetalle[] = [];
-  private _storage: Storage | null = null;
 
 
   constructor( private storage: Storage,
                private toastCtrl: ToastController) {
-    this.init();
     this.cargarFavoritos();
   }
 
@@ -25,7 +23,7 @@ export class DataLocalService {
     toast.present();
   }
 
-  guardarPelicula( pelicula: PeliculaDetalle ) {
+  guardarPelicula( pelicula: any ) {
 
     let existe = false;
     let mensaje = '';
@@ -47,15 +45,17 @@ export class DataLocalService {
 
 
     this.presentToast( mensaje );
-    this.set('Favoritos', this.peliculas);
-
+   /// this.set('Favoritos', this.peliculas);
+   localStorage.setItem('Favoritos', JSON.stringify(this.peliculas));
     return !existe;
 
 
   }
 
   async cargarFavoritos() {
-    const peliculas = await this.storage.get('Favoritos');
+    //const peliculas = await this.storage.get('Favoritos');
+    //this.peliculas = peliculas || [];
+    const peliculas = JSON.parse(localStorage.getItem('Favoritos'));
     this.peliculas = peliculas || [];
     return this.peliculas;
   }
@@ -67,12 +67,12 @@ export class DataLocalService {
 
     return (existe) ? true : false;
   }
-  async init() {
-    // If using, define drivers here: await this.storage.defineDriver(/*...*/);
-    const storage = await this.storage.create();
-    this._storage = storage;
+  async existeHomePage( id ) {
+
+    await this.cargarFavoritos();
+    const existe = this.peliculas.find( peli => peli.id === id );
+
+    return (existe) ? true : false;
   }
-  public set(key: string, value: any) {
-    this._storage?.set(key, value);
-  }
+
 }

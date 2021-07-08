@@ -13,8 +13,10 @@
     
     <ion-grid  *ngIf="peliculas.pelis.length > 0">
       <ion-row>
-        <ion-col>
+        <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-sx="12">
           <h4>{{ peliculas.genero }}</h4>
+          <img [src]="[codig]">
+
         </ion-col>
       </ion-row>
 
@@ -22,8 +24,6 @@
 
     </ion-grid>
   </div>
-  <label *ngIf="!peliculas">
-    <h1>No hay ninguna pelicula en favoritos</h1>
-  </label>
+
 
 </ion-content>
