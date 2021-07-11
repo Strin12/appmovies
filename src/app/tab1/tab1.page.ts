@@ -21,10 +21,8 @@ series: Pelicula[] = [];
               private route: Router, private dataLocal: DataLocalService) {}
 
 ngOnInit(){
-  if(this.dataLocal.Load_sesion() != ""){
     this.perfil = this.dataLocal.LoadPerfil()
-    console.log(this.perfil);
-  }
+
 
   if(this.perfil == "my_profile" || this.perfil == "adulto"){
 
@@ -42,8 +40,7 @@ if(this.perfil == "kids"){
    }
  );
  this.getKidsPopulares();
-}
-else{
+}if(this.perfil == "invitado"){
 this.moviesService.Series_new().subscribe(
   (resp: MDBResponse) =>{
     this.peliculas = resp.results;
