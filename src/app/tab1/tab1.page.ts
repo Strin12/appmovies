@@ -34,7 +34,16 @@ this.moviesService.getFeacture().subscribe(
 }
 );
 this.getPopulares();
-}else{
+}
+if(this.perfil == "kids"){
+ this.moviesService.getpelisKids().subscribe(
+   (resp: MDBResponse) =>{
+     this.peliculas = resp.results;
+   }
+ );
+ this.getKidsPopulares();
+}
+else{
 this.moviesService.Series_new().subscribe(
   (resp: MDBResponse) =>{
     this.peliculas = resp.results;
@@ -63,6 +72,17 @@ getSeriesPopulares(){
     resp => {
       const arrTemps = [...this.series, ...resp.results];
       this.series = arrTemps;
+    },err =>{
+      this.presentToast();
+      this.dato = false;
+    }
+  );
+}
+getKidsPopulares(){
+  this.moviesService.getKidspopulars().subscribe(
+    resp => {
+      const arrTemp = [...this.populares, ...resp.results];
+      this.populares = arrTemp;
     },err =>{
       this.presentToast();
       this.dato = false;

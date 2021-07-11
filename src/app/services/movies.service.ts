@@ -105,4 +105,23 @@ getSeriespopulars(){
   const query = `/discover/tv?sort_by=popularity.desc&page=${this.series}`;
   return this.ejecutarQuery<MDBResponse>(query);
 }
+getpelisKids(){
+  const hoy = new Date();
+  const ultimoDia = new Date( hoy.getFullYear(), hoy.getMonth() + 1, 0 ).getDate();
+  const month = hoy.getMonth() + 1;
+
+  let mesString = month < 10 ? `0${month}`: month;
+
+  const inicio = `${ hoy.getFullYear() }-${ mesString }-01`;
+  const fin = `${ hoy.getFullYear() }-${ mesString }-${ ultimoDia }`;
+  
+
+
+  return this.ejecutarQuery<MDBResponse>(`/discover/movie?primary_release_date.gte=${ inicio }&primary_release_date.lte=${ fin }&
+  certification_country=US&certification.lte=G`);
+}
+getKidspopulars(){
+  const query = `/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc`;
+  return this.ejecutarQuery<MDBResponse>(query);
+}
 }

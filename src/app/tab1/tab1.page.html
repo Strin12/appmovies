@@ -15,6 +15,7 @@
     <ion-row>
       <ion-col>
         <h3 *ngIf="perfil == 'my_profile' || perfil == 'adulto'">Películas Nuevas</h3>
+        <h3 *ngIf="perfil == 'kids'">Películas aptas para todo el público</h3>
         <h3 *ngIf="perfil == 'invitado'">Series nuevas</h3>
       </ion-col>
     </ion-row>
@@ -46,7 +47,7 @@
   
   <app-slideshow-pares [peliculas]="populares"
                        (cargarMas)="cargarMas()" [dato]="dato"
-                       *ngIf="perfil == 'my_profile' || perfil == 'adulto'"></app-slideshow-pares>
+                       *ngIf="perfil == 'my_profile' || perfil == 'adulto' || perfil == 'kids'"></app-slideshow-pares>
   
 <app-slideshow-pares-series [series]="series"
 (cargarMas)="cargarMas()" [dato]="dato"

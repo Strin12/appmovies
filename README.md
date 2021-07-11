@@ -1,4 +1,4 @@
-# Documentacion del proyecto
+# Documentación del proyecto
 - para usar el proyecto deberan primero clonarlo con el comando:
 - git clone https://github.com/Strin12/appmovies.git
 - Una vez finalizado la clonacion del proyecto usar el siguiente comando:
