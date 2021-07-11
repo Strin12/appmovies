@@ -15,6 +15,7 @@ export class DetalleComponent implements OnInit {
   actores: Cast[] = [];
   oculto = 150;
   estrella = 'star-outline';
+  perfil:any;
   
   slideOptActores = {
     slidesPerView: 3.3,
@@ -29,22 +30,41 @@ export class DetalleComponent implements OnInit {
 
                ngOnInit() {
                 // console.log('ID', this.id );
-            
+                if(this.dataLocal.Load_sesion() != ""){
+                  this.perfil = this.dataLocal.LoadPerfil()
+                  console.log(this.perfil);
+                }
+
                 this.dataLocal.existePelicula( this.id )
                   .then( existe => this.estrella = ( existe ) ? 'star' : 'star-outline' );
             
-            
-                this.moviesService.getPeliculaDetalle( this.id )
-                    .subscribe( resp => {
-                      console.log( resp );
-                      this.pelicula = resp;
-                    });
-            
-                this.moviesService.getActoresPelicula( this.id )
-                    .subscribe( resp => {
-                      console.log( resp );
+                if(this.perfil == "my_profile" || this.perfil == "adulto"){
+                  this.moviesService.getPeliculaDetalle( this.id )
+                  .subscribe( resp => {
+                    console.log( resp );
+                    this.pelicula = resp;
+                  });
+                  this.moviesService.getActoresPelicula( this.id )
+                  .subscribe( resp => {
+                    console.log( resp );
+                    this.actores = resp.cast;
+                  });
+                }else {
+                  this.moviesService.getSerieDetalle(this.id).subscribe(
+                    resp =>{
+                      console.log(resp);
+                      this.pelicula = resp
+                    }
+                  );
+                  this.moviesService.getActorestSerie(this.id).subscribe(
+                    resp => {
                       this.actores = resp.cast;
-                    });
+                    }
+                  );
+                }
+             
+            
+            
             
               }
             
@@ -57,5 +77,5 @@ export class DetalleComponent implements OnInit {
                 
                 this.estrella = ( existe ) ? 'star' : 'star-outline';
               }
-            
+
             }

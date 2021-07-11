@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color = "danger">
+    <ion-title style="text-align: center;">
+      Bienvenido
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3 style="text-align: center;">¿Quieres ver las peliculas?</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card color="dark" (click)="Login(user.perfil)">
+        <ion-card-content>
+          <ion-avatar>
+            <img src="assets/avatar1.jpg" style="font-size: 80;">
+          </ion-avatar>
+        </ion-card-content>
+        <ion-card-header>
+          <ion-card-title>Mi perfil</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card color="dark" (click)="Login(user.perfil2)">
+        <ion-card-content>
+          <ion-avatar>
+            <img src="assets/avatar2.jpg" style="font-size: 80;">
+          </ion-avatar>
+        </ion-card-content>
+        <ion-card-header>
+          <ion-card-title>Invitado</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card color="dark" (click)="Login(user.perfil3)">
+        <ion-card-content>
+          <ion-avatar>
+            <img src="assets/avatar3.jpg" style="font-size: 80;">
+          </ion-avatar>
+        </ion-card-content>
+        <ion-card-header>
+          <ion-card-title>Kids</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card color="dark" (click)="Login(user.perfil4)">
+        <ion-card-content>
+          <ion-avatar>
+            <img src="assets/avatar4.jpg" style="font-size: 80;">
+          </ion-avatar>
+        </ion-card-content>
+        <ion-card-header>
+          <ion-card-title>Adultos</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+</ion-content>

@@ -8,7 +8,8 @@ import { PeliculaDetalle } from '../interfaces/interface';
 })
 export class DataLocalService {
   peliculas: PeliculaDetalle[] = [];
-
+  sesion:any;
+  perfil:any;
 
   constructor( private storage: Storage,
                private toastCtrl: ToastController) {
@@ -67,6 +68,22 @@ export class DataLocalService {
 
     return (existe) ? true : false;
   }
+  save_perfil(user:any){
+    localStorage.setItem('Perfil', JSON.stringify(user));
 
-
+  }
+  save_sesion(sesion:any){
+    localStorage.setItem('Sesion', JSON.stringify(sesion));
+    
+  }
+  LoadPerfil(){
+   const perfil = JSON.parse(localStorage.getItem('Perfil'));
+    this.perfil = perfil || [];
+    return this.perfil;
+  }
+  Load_sesion(){
+    const sesion = JSON.parse(localStorage.getItem('Sesion'));
+    this.sesion = sesion || [];
+    return this.sesion;
+  }
 }

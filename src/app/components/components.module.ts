@@ -6,6 +6,8 @@ import { PipesModule } from '../pipes/pipes.module';
 import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.component';
 import { SlideshowParesComponent } from './slideshow-pares/slideshow-pares.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import { ImagePerfilComponent } from './image-perfil/image-perfil.component';
+import { SlideshowParesSeriesComponent } from './slideshow-pares-series/slideshow-pares-series.component';
 
 
 
@@ -14,13 +16,17 @@ import { DetalleComponent } from './detalle/detalle.component';
     SlideshowBackdropComponent,
     SlideshowPosterComponent,
     SlideshowParesComponent,
-    DetalleComponent
-  ],
+    DetalleComponent,
+    ImagePerfilComponent,
+    SlideshowParesSeriesComponent
+    ],
   exports: [
     SlideshowBackdropComponent,
     SlideshowPosterComponent,
     SlideshowParesComponent,
-    DetalleComponent
+    DetalleComponent,
+    ImagePerfilComponent,
+    SlideshowParesSeriesComponent
 
   ],
   imports: [

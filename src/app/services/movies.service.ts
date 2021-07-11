@@ -10,6 +10,7 @@ const apiKey = environment.apiKey;
 })
 export class MoviesService {
   private popularesPage = 485;
+  private series = 485;
   generos: Genre[] = [];
   peliculas: any[] = [];
  QR: string = 'http://api.qrserver.com/v1/create-qr-code/'
@@ -72,5 +73,36 @@ buscarPeliculas( texto: string ) {
   return this.ejecutarQuery(`/search/movie?query=${ texto }`);
 
 }
+Autentication(){
+ return this.http.get(`${URL}/authentication/guest_session/new?api_key=${apiKey}`); 
+}
+series_invitados(){
+  const query = `/discover/tv?sort_by=popularity.desc`;
+  return this.ejecutarQuery<MDBResponse>(query);
+}
+Series_new(){
+  const hoy = new Date();
+  const ultimoDia = new Date( hoy.getFullYear(), hoy.getMonth() + 1, 0 ).getDate();
+  const month = hoy.getMonth() + 1;
 
+  let mesString = month < 10 ? `0${month}`: month;
+
+  const inicio = `${ hoy.getFullYear() }-${ mesString }-01`;
+  const fin = `${ hoy.getFullYear() }-${ mesString }-${ ultimoDia }`;
+  
+
+
+  return this.ejecutarQuery<MDBResponse>(`/discover/tv?primary_release_date.gte=${ inicio }&primary_release_date.lte=${ fin }`);
+}
+getSerieDetalle( id: string ) {
+  return this.ejecutarQuery<PeliculaDetalle>(`/tv/${ id }?a=1`);
+}
+getActorestSerie( id: string ) {
+  return this.ejecutarQuery<RespuestaCredits>(`/tv/${ id }/credits?a=1`);
+}
+getSeriespopulars(){
+  this.series++;
+  const query = `/discover/tv?sort_by=popularity.desc&page=${this.series}`;
+  return this.ejecutarQuery<MDBResponse>(query);
+}
 }
