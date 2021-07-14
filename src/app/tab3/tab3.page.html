@@ -15,11 +15,17 @@
       <ion-row>
         <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-sx="12">
           <h4>{{ peliculas.genero }}</h4>
-          <img [src]="[codig]">
-
         </ion-col>
       </ion-row>
-
+      <ion-slides [options]="slideOpts">
+        <ion-slide>
+          
+          <ion-card mode="md">
+            <img [src]="[codig]" class="QR">
+          </ion-card>
+      
+        </ion-slide>
+      </ion-slides>
       <app-slideshow-poster [peliculas]="peliculas.pelis"></app-slideshow-poster>
 
     </ion-grid>

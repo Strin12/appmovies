@@ -16,7 +16,10 @@ export class Tab3Page implements OnInit{
   favoritoGenero: any[] = [];
   QR: any;
   codig:any;
-  
+  slideOpts = {
+    slidesPerView: 3.1,
+    freeMode: true
+  };
   constructor( private dataLocal: DataLocalService,
                private moviesService: MoviesService  ) { }
 
@@ -65,7 +68,7 @@ export class Tab3Page implements OnInit{
       this.QR = datos;
 //      console.log(datos);
 //console.log(this.QR);
-this.codig = `https://api.qrserver.com/v1/create-qr-code/?data=${this.QR}d&size=100x100`;
+this.codig = `https://api.qrserver.com/v1/create-qr-code/?data=${this.QR}d&size=450x450`;
 }
     }
 }
